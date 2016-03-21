@@ -9,7 +9,7 @@ RSpec.describe PostsController, type: :controller do
       expect(response).to have_http_status(:success)
     end
 
-    #fails after addition of SPAM filter, due to change in post title?
+    #fails when using SPAM filter, due to change in post title?
     it "assigns [my_post] to @posts" do
        get :index
        expect(assigns(:posts)).to eq([my_post])

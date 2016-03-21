@@ -17,6 +17,15 @@ require 'random_data'
  end
  Post.find_by(title: "An awesome book").comments.find_or_create_by(body: "I agree!")
  
+ 10.times do
+   Advertisement.create!(
+     title:  RandomData.random_sentence,
+     body:   RandomData.random_paragraph,
+     price:  rand(1..50)
+   )
+ end
+ 
  puts "Seed finished"
  puts "Total number of posts: #{Post.count}"
  puts "Total number of comments: #{Comment.count}"
+ puts "Total number of advertisements: #{Advertisement.count}"

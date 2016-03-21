@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   def index
     @posts = Post.all
+    # optional SPAM filter:
     # @posts.each do |post|
     #   if (post.id == 1) || (post.id % 5 == 1)
     #     post.title = "SPAM"
