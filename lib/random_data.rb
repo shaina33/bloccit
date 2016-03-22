@@ -17,10 +17,30 @@ module RandomData
      sentence = strings.join(" ")
      sentence.capitalize << "."
    end
+   
+   def self.random_question
+     strings = []
+     rand(3..8).times do
+       strings << random_word
+     end
+ 
+     sentence = strings.join(" ")
+     sentence.capitalize << "?"
+   end 
  
    def self.random_word
      letters = ('a'..'z').to_a
      letters.shuffle!
      letters[0,rand(3..8)].join
    end
+   
+   def self.random_resolve
+       x = rand(1..3)
+       if x > 1
+           return false
+       else
+           return true
+       end
+   end
+   
 end
