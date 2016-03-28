@@ -21,6 +21,7 @@ let(:topic) { Topic.create!(name: RandomData.random_sentence, description: Rando
      end
      
      it { is_expected.to have_many(:posts) }
+     it { is_expected.to have_many(:sponsoredposts) }
 
    end
 

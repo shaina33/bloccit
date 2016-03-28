@@ -17,6 +17,15 @@ require 'random_data'
  end
   #Post.find_or_create_by(title: "An awesome book", body: "Harry Potter is an awesome book!")
  posts = Post.all
+ 
+ 5.times do
+   Sponsoredpost.create!(
+     topic:  topics.sample,
+     title:  RandomData.random_sentence,
+     body:   RandomData.random_paragraph,
+     price:  rand(1..50)
+   )
+ end
 
  100.times do
    Comment.create!(
@@ -45,6 +54,7 @@ require 'random_data'
  puts "Seed finished"
  puts "Total number of topics: #{Topic.count}"
  puts "Total number of posts: #{Post.count}"
+ puts "Total number of sponsored posts: #{Sponsoredpost.count}"
  puts "Total number of comments: #{Comment.count}"
  puts "Total number of advertisements: #{Advertisement.count}"
  puts "Total number of questions: #{Question.count}"
