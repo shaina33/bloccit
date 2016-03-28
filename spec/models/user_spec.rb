@@ -36,4 +36,11 @@ let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", passw
        expect(user_with_invalid_email).to_not be_valid
      end
     end
+    
+    describe "format user name" do
+        let (:user_lowercase) { User.create!(name: "first last", email: "user@bloccit.com", password: "sixletters") }
+        it "capitalizes both user names" do
+            expect(user_lowercase.name).to eq "First Last"
+        end
+    end
 end
