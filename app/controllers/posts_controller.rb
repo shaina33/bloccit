@@ -71,7 +71,7 @@ class PostsController < ApplicationController
   end
   def authorize_update
       post = Post.find(params[:id])
-      unless current_user == post.user || (current_user.moderator? || current_user.admin)
+      unless current_user == post.user || (current_user.moderator? || current_user.admin?)
         flash[:alert] = "You must be a moderator or administrator to do this action."
         redirect_to [post.topic, post]
       end

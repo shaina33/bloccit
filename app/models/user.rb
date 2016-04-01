@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
     
     has_many :posts
+    has_many :comments
     
     before_save { self.email = email.downcase }
     before_save { self.name = name.split(" ").map {|w| w.capitalize}.join(" ") }
