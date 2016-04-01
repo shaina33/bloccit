@@ -10,10 +10,17 @@ require 'random_data'
  # Create an admin user
  admin = User.create!(
    name: 'Admin User',
-   email: 'admin@rxample.com', #typo
+   email: 'admin@example.com',
    password: 'helloworld',
    role: 'admin',
    )
+ # Create a moderator user
+ moderator = User.create!(
+   name: 'Moderator User',
+   email: 'moderator@example.com',
+   password: 'helloworld',
+   role: 'moderator',
+ )
  # Create a member user
  member = User.create!(
    name: 'Member User',
