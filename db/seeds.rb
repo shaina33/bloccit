@@ -7,10 +7,18 @@ require 'random_data'
      password: RandomData.random_sentence
     )
  end
- user = User.first
- user.update_attributes!(
-     email: "skarasin@u.rochester.edu",
-     password: 'helloworld'
+ # Create an admin user
+ admin = User.create!(
+   name: 'Admin User',
+   email: 'admin@rxample.com', #typo
+   password: 'helloworld',
+   role: 'admin',
+   )
+ # Create a member user
+ member = User.create!(
+   name: 'Member User',
+   email: 'member@example.com',
+   password: 'helloworld',
  )
  
  15.times do
