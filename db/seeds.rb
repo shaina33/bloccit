@@ -27,6 +27,7 @@ require 'random_data'
    email: 'member@example.com',
    password: 'helloworld',
  )
+ users = User.all
  
  15.times do
    Topic.create!(
@@ -38,7 +39,7 @@ require 'random_data'
 
  50.times do
    Post.create!(
-     user:   User.all.sample,
+     user:   users.sample,
      topic:  topics.sample,
      title:  RandomData.random_sentence,
      body:   RandomData.random_paragraph
@@ -64,6 +65,13 @@ require 'random_data'
    )
  end
  #Post.find_by(title: "An awesome book").comments.find_or_create_by(body: "I agree!")
+ 30.times do
+  Comment.create!(
+    user: users.sample,
+    topic: topics.sample,
+    body: RandomData.random_paragraph
+  )
+end
  
  10.times do
    Advertisement.create!(
