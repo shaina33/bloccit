@@ -38,12 +38,15 @@ require 'random_data'
  topics = Topic.all
 
  50.times do
-   Post.create!(
+   post = Post.create!(
      user:   users.sample,
      topic:  topics.sample,
      title:  RandomData.random_sentence,
      body:   RandomData.random_paragraph
    )
+   #randomize each post's creation time & votes
+   post.update_attribute(:created_at, rand(10.minutes .. 1.month).ago)
+   rand(1..5).times {post.votes.create!(value: [-1,1].sample, user: users.sample) }
  end
   #Post.find_or_create_by(title: "An awesome book", body: "Harry Potter is an awesome book!")
  posts = Post.all
@@ -59,7 +62,7 @@ require 'random_data'
 
  100.times do
    Comment.create!(
-     user: User.all.sample,
+     user: users.sample,
      post: posts.sample,
      body: RandomData.random_paragraph
    )
@@ -95,5 +98,6 @@ end
  puts "Total number of posts: #{Post.count}"
  puts "Total number of sponsored posts: #{Sponsoredpost.count}"
  puts "Total number of comments: #{Comment.count}"
+ puts "Total number of votes: #{Vote.count}"
  puts "Total number of advertisements: #{Advertisement.count}"
  puts "Total number of questions: #{Question.count}"
