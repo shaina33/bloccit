@@ -21,6 +21,18 @@ RSpec.describe Post, type: :model do
         end
     end
     
+    describe "post creation" do
+        it "vote count should equal 1" do
+            expect(post.votes.count). to eq(1)
+        end
+        it "voting points should equal 1" do
+            expect(post.points).to eq(1)
+        end
+        it "has a vote belonging to the user" do
+            expect(post.votes.first.user).to eq(user)
+        end
+    end
+    
    it { is_expected.to validate_presence_of(:title) }
    it { is_expected.to validate_presence_of(:body) }
    it { is_expected.to validate_presence_of(:topic) }
