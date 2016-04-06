@@ -39,5 +39,6 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  config.action_mailer.default_url_options = { host: 'https://bloc-foundation-shaina33-1.c9users.io' } #localhost
+  config.action_mailer.default_url_options = { host: 'https://bloc-foundation-shaina33-1.c9users.io' }
+  # 'https://bloc-foundation-shaina33-1.c9users.io' instead of localhost
 end

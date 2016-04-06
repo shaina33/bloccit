@@ -1,0 +1,10 @@
+New post in "<%= @post.topic.name %>"
+<%= "=" * (@post.topic.name.length + 12) %>
+
+<%= @post.body %>
+
+Thank you for your contribution to Bloccit! You have been automatically subscribed to this post and will receive emails when new comments are made on your post.
+
+If you do not wish to receive comment notifications, please visit your post on Bloccit and click 'Unfavorite'.
+
+See your post online at: <%= topic_post_url(@post.topic, @post) %>
