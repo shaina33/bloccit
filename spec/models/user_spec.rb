@@ -6,6 +6,7 @@ let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", passw
    it { is_expected.to have_many(:posts) }
    it { is_expected.to have_many(:comments) }
    it { is_expected.to have_many(:votes) }
+   it { is_expected.to have_many(:favorites) }
    
    it { is_expected.to validate_presence_of(:name) }
    it { is_expected.to validate_length_of(:name).is_at_least(1) }
@@ -45,8 +46,22 @@ let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", passw
          expect(user).to respond_to(:moderator?)
       end
    end
+   
+   describe "#favorite_for(post)" do
+      before do
+         topic = Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph)
+         @post = topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
+      end
+      it "returns 'nil' if the user has not favorited the post" do
+         expect(user.favorite_for(@post)).to be_nil
+      end
+      it "returns the appropriate favorite if it exists" do
+         favorite = user.favorites.where(post: @post).create
+         expect(user.favorite_for(@post)).to eq(favorite)
+      end
+   end
 
-   describe "roles" do
+describe "roles" do
       it "is member by default" do
          expect(user.role).to eql("member")
       end
@@ -87,7 +102,6 @@ let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", passw
       expect(user.admin?).to be_truthy
    end
  end
-end
 
   describe "invalid user" do
      let(:user_with_invalid_name) { User.new(name: "", email: "user@bloccit.com") }
@@ -101,4 +115,5 @@ end
         expect(user_with_invalid_email).to_not be_valid
      end
   end
-end
+ end #describe roles
+end #RSpec
