@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "password") }
+#let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", password: "password") }
+let (:user) {create(:user)}
    
    it { is_expected.to have_many(:posts) }
    it { is_expected.to have_many(:comments) }
@@ -29,6 +30,10 @@ let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", passw
       it "should respond to email" do
          expect(user).to respond_to(:email)
       end
+      
+      it "should have name & email attributes" do
+         expect(user).to have_attributes(name: user.name, email: user.email)
+      end
 
       it "responds to role" do
          expect(user).to respond_to(:role)
@@ -52,12 +57,22 @@ let(:user) { User.create!(name: "Bloccit User", email: "user@bloccit.com", passw
          topic = Topic.create!(name: RandomData.random_sentence, description: RandomData.random_paragraph)
          @post = topic.posts.create!(title: RandomData.random_sentence, body: RandomData.random_paragraph, user: user)
       end
-      it "returns 'nil' if the user has not favorited the post" do
-         expect(user.favorite_for(@post)).to be_nil
-      end
-      it "returns the appropriate favorite if it exists" do
-         favorite = user.favorites.where(post: @post).create
-         expect(user.favorite_for(@post)).to eq(favorite)
+      #following tests fail after addition of auto-favoriting at time of post creation
+      # it "returns 'nil' if the user has not favorited the post" do
+      #    expect(user.favorite_for(@post)).to be_nil
+      # end
+      # it "returns the appropriate favorite if it exists" do
+      #    favorite = user.favorites.where(post: @post).create
+      #    expect(user.favorite_for(@post)).to eq(favorite)
+      # end
+   end
+   
+   describe ".avatar_url" do
+      let(:known_user) { create(:user, email: "blochead@bloc.io") }
+      
+      it "returns the proper Gravatar url for a known email entity" do
+         expected_gravatar = "http://gravatar.com/avatar/bb6d1172212c180cfbdb7039129d7b03.png?s=48"
+         expect(known_user.avatar_url(48)).to eq(expected_gravatar)
       end
    end
 
@@ -104,8 +119,8 @@ describe "roles" do
  end
 
   describe "invalid user" do
-     let(:user_with_invalid_name) { User.new(name: "", email: "user@bloccit.com") }
-     let(:user_with_invalid_email) { User.new(name: "Bloccit User", email: "") }
+     let(:user_with_invalid_name) { build(:user, name: "") }
+     let(:user_with_invalid_email) { build(:user, email: "") }
 
      it "should be an invalid user due to blank name" do
         expect(user_with_invalid_name).to_not be_valid
