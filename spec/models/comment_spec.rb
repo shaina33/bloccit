@@ -5,7 +5,7 @@ RSpec.describe Comment, type: :model do
     let(:user) { create(:user) }
     let(:another_user) {create(:user)}
     let(:post) { create(:post) }
-    let(:comment) { Comment.create!(body: 'Comment Body', post: post, user: user) }
+    let(:comment) { create(:comment_p,body: 'Comment Body') }
  
     it { is_expected.to belong_to(:post) }
     it { is_expected.to belong_to(:user) }
@@ -21,7 +21,7 @@ RSpec.describe Comment, type: :model do
     
     describe "after_create" do
         before do
-            @another_comment = Comment.new(body: 'Comment Body', post: post, user: user)
+            @another_comment = build(:comment_p, body: 'Comment Body') #Comment.new(body: 'Comment Body', post: post, user: user)
         end
         #test below fails because favorite occurs automatically now? **
         # it "sends an email to users who have favorited the post" do
