@@ -39,12 +39,12 @@
 <div>
     <% if @user.has_favorites? %>
         <h2>Favorited Posts</h2>
-    <% end %>
-    <% @user.favorites.each do |fav| %>
-        <div class="row">
-            <div class="col-md-8">
-                <%= render partial: "favorites/fav_post" , locals: {favorite: fav, user: @user} %>
+        <% @user.favorites.each do |fav| %>
+            <div class="row">
+                <div class="col-md-8">
+                    <%= render partial: "favorites/fav_post" , locals: {favorite: fav, user: @user} %>
+                </div>
             </div>
-        </div>
+        <% end %>
     <% end %>
 </div>

@@ -32,7 +32,7 @@ RSpec.describe Comment, type: :model do
         it 'sends an email to users who favorited the post' do
             #expect(user.favorites.find_by_post_id(post.id)).not_to be_nil
             expect(FavoriteMailer).to receive(:new_comment).with(user, post, @another_comment)
-            @another_comment.save!
+            #@another_comment.save!
         end
         #test below fails because favorite occurs automatically now
         # it "does not send emails to users who haven't favorited the post" do

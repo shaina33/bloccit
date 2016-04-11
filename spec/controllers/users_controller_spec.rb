@@ -9,7 +9,22 @@ RSpec.describe UsersController, type: :controller do
          password_confirmation: "blochead"
         }
     end
-   
+    let (:user) {create(:user)}
+    
+    describe "GET show" do
+        it "returns http success" do
+            get :show, id: user.id
+            expect(response).to have_http_status(:success)
+        end
+        it "renders the #show view" do
+            get :show, id: user.id
+            expect(response).to render_template(:show)
+        end
+        it "assigns user to @user" do
+            get :show, id: user.id
+            expect(assigns(:user)).to eq(user)
+        end
+    end
     describe "GET new" do
         it "returns http success" do
             get :new
