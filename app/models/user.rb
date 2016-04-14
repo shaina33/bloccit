@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
     before_save { self.name = name.split(" ").map {|w| w.capitalize}.join(" ") }
     before_save { self.role ||= :member }
     
+    before_create :generate_auth_token
+    
     validates :name, length: { minimum: 1, maximum: 100 }, presence: true
     validates :password, presence: true, length: { minimum: 6 }, if: "password_digest.nil?"
     validates :password, length: { minimum: 6 }, allow_blank: true
@@ -28,6 +30,13 @@ class User < ActiveRecord::Base
         gravatar_id = Digest::MD5::hexdigest(self.email).downcase
         "http://gravatar.com/avatar/#{gravatar_id}.png?s=#{size}"
     end
+    def generate_auth_token
+        loop do
+            self.auth_token = SecureRandom.base64(64)
+            break unless User.find_by(auth_token: auth_token)
+        end
+    end
+        
     def has_posts?
         posts.first
     end
