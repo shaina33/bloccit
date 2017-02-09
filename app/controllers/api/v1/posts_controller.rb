@@ -32,7 +32,8 @@ class Api::V1::PostsController < Api::V1::BaseController
             post.save!
             render json: post, status: 201
         else
-            render json: {error: "Post is invalid", status: 400}, status: 400
+            p post.errors
+            render json: {error: "Post is invalid. #{post.errors}", status: 400}, status: 400
         end
     end
     
