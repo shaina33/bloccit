@@ -15,9 +15,13 @@
      <%= @topic.description %>
      </p>
      <h3>Comments</h3>
-     <%= render @topic.comments, base: @topic %>
+     <div class="js-comments">
+         <%= render @topic.comments, base: @topic %>
+     </div>
      <% if current_user %>
-        <%= render 'comments/form', comment: Comment.new, base: @topic %>
+        <div class="new-comment">
+            <%= render 'comments/form', comment: Comment.new, base: @topic %>
+        </div>
      <% end %>
      <h3>Posts</h3>
      <%= render @topic.posts %>
