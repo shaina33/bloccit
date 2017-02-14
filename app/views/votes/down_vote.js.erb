@@ -1,2 +1,2 @@
-$('.voting').html("<%= escape_javascript(render partial: 'votes/voter', locals: {post: @post}) %>");
+$('#post-<%= @post.id %>').html("<%= escape_javascript(render partial: 'votes/voter', locals: {post: @post}) %>");
 $('.vote-points').html("<%= pluralize(@post.points, 'point') %>")
