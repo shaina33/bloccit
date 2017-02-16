@@ -1,24 +1,31 @@
-<br>
+ <h1 class="homepage-title">Bloccit</h1>
+ <div class="jumbotron-content">
+   <h3>Bloccit is a platform for learning and discussing all of your favorite topics!</h3>
+ </div>
  <div class="jumbotron">
-   <h1>Bloccit</h1>
-   <p>Bloccit is a resource for sharing links with your friends!</p>
-   <p>
-     <%= link_to "Sign In", new_session_path %> or
-     <%= link_to "Sign Up", new_user_path, class: 'btn btn-primary' %> today!
-   </p>
  </div>
  
  <div class="row">
    <div class="col-md-4">
-     <h2>Solves world hunger</h2>
-     <p>Bloccit will deliver food and water to those in need, all over the world.</p>
+     <h2 class="homepage-title">Find posts on any topic</h2>
+     <p>Converse with like-minded users about topics you're passionate about.</p>
    </div>
    <div class="col-md-4">
-     <h2>Eliminates poverty</h2>
-     <p>Bloccit will deliver money and education to those in need, all over the world.</p>
+     <h2 class="homepage-title">Comment on everything</h2>
+     <p>Have something to add to the conversation? Feel free to comment on any topic or post. Get your questions answered!</p>
    </div>
    <div class="col-md-4">
-     <h2>Makes you better looking</h2>
-     <p>Bloccit will make you better looking: it's scientifically proven to make men look like Ryan Gosling and women look like Shakira.</p>
+     <h2 class="homepage-title">Vote on posts & mark your favorites</h2>
+     <p>Tell us which posts are the best (and worst!). Save your favorites for later. You can access them anytime from your user profile.</p>
    </div>
+ </div>
+ 
+ <div class="row text-center">
+   <% if !current_user %>
+     <h3>
+       Join the discussion! 
+       <%= link_to "Sign In", new_session_path %> or
+       <%= link_to "Sign Up", new_user_path, class: 'btn btn-primary' %> today!
+     </h3>
+   <% end %>
  </div>
