@@ -18,7 +18,7 @@
 @import "bootstrap";
 
 .user-info {
-   margin-top: 9px;
+   // margin-top: 9px;
  }
  
 .nav {
@@ -29,8 +29,13 @@
    border-radius: 5px;
  }
  
- .pull-right {
-   margin-top: 0px;
-   margin-bottom: 8px;
+ .user-info {
+   margin-top: -1px;
+   margin-bottom: 3px;
+ }
+ 
+ .log-in {
+   margin-top: 10px;
+   margin-bottom: 10px;
  }
 

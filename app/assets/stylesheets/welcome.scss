@@ -15,14 +15,13 @@
     line-height: 40px;
 }
 
-h1 {
-    font-size: 5rem;
+.text-XL {
+    font-size: 10rem;
 }
 
 .homepage-title {
     color: #0D73B5;
 }
-
 
 .jumbotron {
     background-image: url(https://images.pexels.com/photos/57825/pexels-photo-57825.jpeg?w=940&h=650&auto=compress&cs=tinysrgb);
@@ -32,6 +31,8 @@ h1 {
     height: 35vh;
 }
 
-.jumbotron-content {
+.action-content {
+    margin-top: 2vh;
+    margin-bottom: 2vh;
 }
 

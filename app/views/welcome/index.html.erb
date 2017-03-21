@@ -1,7 +1,5 @@
- <h1 class="homepage-title">Bloccit</h1>
- <div class="jumbotron-content">
-   <h3>Bloccit is a platform for learning and discussing all of your favorite topics!</h3>
- </div>
+ <h1 class="homepage-title text-center text-XL">Bloccit</h1>
+ <h3 class="text-center">A platform for discussing all of your favorite topics</h3>
  <div class="jumbotron">
  </div>
  
@@ -20,12 +18,13 @@
    </div>
  </div>
  
- <div class="row text-center">
+ <div class="row text-center action-content">
    <% if !current_user %>
      <h3>
-       Join the discussion! 
-       <%= link_to "Sign In", new_session_path %> or
-       <%= link_to "Sign Up", new_user_path, class: 'btn btn-primary' %> today!
+       Join the discussion! <%= link_to "Sign Up today!", new_user_path, class: 'btn btn-primary' %>
      </h3>
+     <h4>
+       Already have an account? <%= link_to "Log in here.", new_session_path %>
+     </h4>
    <% end %>
  </div>
